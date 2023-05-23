@@ -1,0 +1,104 @@
+.container_context{
+    width: 100%;
+    height: 100%;
+    /* background-color: aqua; */
+}
+
+.container_context .container{
+    width: 100%;
+    height: 15%;
+    padding: 2%;
+    /* background-color: aquamarine; */
+}
+
+.admin_title{
+    /* width: 100%; */
+    width: 460px;
+    height: auto;
+    color: var(--theme-color);
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+
+.cmd_button{
+    margin-right: 2%;
+    font-size: 15px;
+    width: 8%;
+    background-color: transparent;
+    border: #fff 1px solid;
+    padding: 5px;
+    color: #fff;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.cmd_button .active{
+    background-color: #3a6df0;
+    border: none;
+}
+
+.cmd_button:hover{
+    background-color: var(--hover-menu-bg);
+}
+
+
+.container_intg{
+    width: 100%;
+    display: flex;
+}
+
+.container_input{
+    width: 460px;
+    display: flex;
+    /* background-color: #1e59f1; */
+}
+
+.admin_input{
+    width: 20%;
+    height: auto;
+    border: none;
+    background-color: var(--content-bg);
+    border-radius: 4px;
+    font-family: var(--body-font);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0 20px;
+    color: var(--theme-color);
+}
+
+.container_input > .intgration{
+    /* background-color: #1e59f1; */
+    width: 35%;
+
+}
+
+
+.admin_input::-webkit-inner-spin-button{ 
+    -webkit-appearance: none;
+  }
+
+
+.admin_btn{
+    width: 25%;
+    background-color: #3a6df0;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.admin_btn:hover{
+    background: #1e59f1;
+}
+
+
+
+
+.container_title{
+    display: flex;
+}
+
+
