@@ -3,7 +3,7 @@ const Serial = require('./serial');
 const seperateRawData = require('./seperateRawData');
 const preprocessing = require('./preprocessing');
 
-const cutLine = 0.8;
+const cutLine = 0.5;
 const maxIntensity = 1000;
 const SPEC_CHANNELS = 288;
 const count = 7;
@@ -60,6 +60,7 @@ module.exports =async (readData, flags) =>{
 
             if(cnt === count || flags.find(v => v===1) === undefined || parseInt(metaData.integration) > maxSaturation){
                 console.log("측정 중지")
+                console.log(cnt+" ,"+ parseInt(metaData.integration))
 
                 for(let i=0;i<flags.length;i++){ //나머지 데이터 저장
                     if(flags[i] === 0){
@@ -70,7 +71,7 @@ module.exports =async (readData, flags) =>{
             }
             
             stringData[3] = metaData.integration;
-            console.log(stringData);
+            // console.log(stringData);
     
             cnt++
             stringData[2] ='R';

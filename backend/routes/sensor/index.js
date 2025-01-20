@@ -5,6 +5,7 @@ const converter = require('./converter');
 const Serial = require('./serial');
 const seperateRawData = require('./seperateRawData');
 const multipleExposure = require('./multipleExposure');
+const Optical = require('./optical');
 
 const db = require('../../db/index');
 const { raw } = require('mysql');
@@ -19,20 +20,22 @@ router.get('/', (req,res)=>{
 
 router.post('/packet', async (req,res)=>{
 
-    // console.log(req.body)
+    console.log(req.body)
     readData =[];
 
     readData[0] = "02";
     readData[1] = "1";
     readData[2] = req.body.cmd;
-    readData[3] = req.body.integration;
+    readData[3] = req.body.intgtime;
     readData[4] = req.body.saturation;
 
+
+
     let raw_data;
-    let resData = [];
+    let pixel_data = [];
     let seperated =[];
 
-    console.log("cmd:" +req.body.cmd )
+    // console.log("cmd:" +req.body.cmd )
 
     if(req.body.cmd =="R"){
 
@@ -47,7 +50,7 @@ router.post('/packet', async (req,res)=>{
 
         // console.log(preprocessingData);
         // seperated = preprocessingData[0]
-        resData = preprocessingData;
+        pixel_data = preprocessingData;
 
     }
     else{
@@ -59,7 +62,8 @@ router.post('/packet', async (req,res)=>{
         try {
             raw_data = await Serial.writePacket(converter.hexStringToByteArray(writeData));
             seperated = seperateRawData(raw_data); //0: meta(cmd, intg Time, saturation), 1: intensity로 나눔
-            resData.push(seperated);
+            // resData.push(seperated);
+            pixel_data = seperated
             // resData.push.apply(resData,seperated[1]);
 
         }catch(e){
@@ -67,10 +71,6 @@ router.post('/packet', async (req,res)=>{
             res.json(e);
         }
     }
-
-
-
-    
 
     // let writeData = toHex(readData);
     // console.log("send packet: "+writeData);
@@ -103,7 +103,34 @@ router.post('/packet', async (req,res)=>{
    
     // console.log(resData);
     // console.log(resData)s
+    // console.log(resData)
+
+    const optical_data = await Optical.getOptical(pixel_data)  // pixel to calibrated spd and optical properties (by python server)
+    
+    try{
+        const { spd, ...optical} = optical_data.calibrated;
+        // console.log(optical_data)
+
+        resData = {
+            'raw': pixel_data,
+            'calibrated': spd,
+            optical 
+        };
+    }
+    catch (err){
+        console.log(err)
+        resData = {
+            'raw': pixel_data,
+        };
+    }
+    
+
+    // console.log(resData.optical)
+
     res.json(resData);
+
+
+
     
 
 

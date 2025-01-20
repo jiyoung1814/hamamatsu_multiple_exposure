@@ -1,6 +1,6 @@
 let SerialPort = require('serialport').SerialPort;
 const sleep = require('../../sleep');
-let arduinoCOMPort  = "COM4";
+let arduinoCOMPort  = "COM6";
 
 // 0:start, 1:My_Device_id, 2:cmd, 3~6:integration_time, 7~582:data, 583:checksum, 584:end
 let readData = [];
@@ -54,7 +54,7 @@ exports.writePacket = (packet) =>{
 
             if(flag) {
                 resolve(readData);
-                console.log("get response packet");
+                // console.log("get response packet");
                 
                 break;
             }

@@ -25,27 +25,35 @@ const Chart =(props)=>{
     },[props.modeBtn])
 
     useEffect(()=>{
-      if(props.serialRead.length !==0){
-        // console.log(props.serialRead)
-
-
-      let d = [];
-      for(let i=0;i<sensorPixel;i++){
-        name[i] = ""+i+"";
-        let obj = {
-          name: name[i],
-          ird: props.serialRead[i].value
+      if(props.hamamatusRead.length !==0){
+        // console.log(props.hamamatusRead)
+  
+        let d = [];
+        for(let i=0;i<sensorPixel;i++){
+          name[i] = ""+i+"";
+          let obj = {
+            name: name[i],
+            ird: props.hamamatusRead[i].value
+          }
+          d.push(obj);
         }
-        d.push(obj);
-      }
-      setData(d);
+        setData(d);
+
+        // let d = [];
+        // for(let key in props.hamamatusRead){
+        //   d.push({
+        //     name: key,
+        //     ird: props.hamamatusRead[key]
+        //   })
+        // }
+        
 
       }
       else{
         grapSetZero();
       }
       
-    },[props.serialRead])
+    },[props.hamamatusRead])
 
     const TooltipItemStyle ={
       color:'white',
@@ -76,7 +84,7 @@ const Chart =(props)=>{
     }
 
     return(
-        <ResponsiveContainer width="100%">
+        <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}
           margin={{

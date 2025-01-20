@@ -7,28 +7,27 @@ import {textFile} from '../function/textFile'
 
 const RawData =(props) =>{
 
-    const [serialRead, setSerialRead] = useState([]);
+    const [hamamatusRead, setHamamatusRead] = useState([]);
     const [textData, setTextData] = useState([]);
     const [modeBtn, setModeBtn] = useState('A');
 
     useEffect(()=>{
-        let rawData = props.serialRead;
-        // console.log(rawData)
-
+        let rawData = props.hamamatusRead;
+        console.log(rawData)
+        
         if(rawData.length!==0){
-            // console.log(rawData.length);
-
-            // console.log(rawData[0][1])
+            // let text = textFile(rawData); //meta data만 분리
             let text = textFile(rawData); //meta data만 분리
 
-            let chartData = rawData[0][1]; //meta data를 제외한 데이터만 분리
+            // let chartData = rawData['pixel']; //meta data를 제외한 데이터만 분리
+            let chartData = rawData[1]
 
             setTextData(text);
-            setSerialRead(chartData);
+            setHamamatusRead(chartData);
 
         }
 
-    },[props.serialRead]);
+    },[props.hamamatusRead]);
 
     useEffect(()=>{
         setModeBtn(props.modeBtn);
@@ -46,7 +45,7 @@ const RawData =(props) =>{
                     <button className='side-submit-btn' onClick={()=>SaveData(textData)}>Save</button>
                 </div>
                 <div className='content-chart'>
-                    <Chart serialRead= {serialRead} modeBtn = {modeBtn}></Chart>
+                    <Chart hamamatusRead= {hamamatusRead} modeBtn = {modeBtn}></Chart>
                 </div>
             </div>
             

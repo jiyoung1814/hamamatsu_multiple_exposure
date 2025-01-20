@@ -8,6 +8,10 @@ db.connect();
 
 const router = require('./routes/index');
 
+// app.get('/', (req, res) =>{
+//     console.log(`Request received from: ${req.ip}`);
+// })
+
 app.listen(app.get('port'), () =>{
     console.log('hamamatsu server start on port ', app.get('port'));
 })
