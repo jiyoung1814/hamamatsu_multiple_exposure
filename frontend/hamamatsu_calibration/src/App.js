@@ -3,7 +3,7 @@ import React,{useState} from 'react';
 import {BrowserRouter,Routes,Route,Link} from "react-router-dom";
 
 import RawData from './component/RawData';
-import ExhibitionLight from './component/ExhibitionLight';
+import Optical from './component/Optical';
 // import YCalibrating from './component/YCalibrating';
 // import All from './component/All';
 import Admin from './component/Admin';
@@ -17,7 +17,7 @@ import { ChangeClassListActive } from './function/btnEvent';
 function App() {
 
   const [hamamatusRead, setHamamatusRead] = useState([]);
-  const [hamamatusCalibrate, setHamamatusCalibrate] = useState([]);
+  // const [hamamatusCalibrate, setHamamatusCalibrate] = useState([]);
   const [hamamatusOptical, setHamamatusOptical] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modeBtn, setModeBtn] = useState('A');
@@ -89,7 +89,7 @@ function App() {
 
     console.log(body)
 
-    await post('/arduino/hamamauts/exhibitionLight',body);
+    await post('/arduino/hamamauts/ExhibitionLight',body);
 
   }
 
@@ -113,7 +113,7 @@ function App() {
         <div className="menu-circle"></div>
         <div className="header-menu">
           <Link to ="/" id='opt-1' className="menu-link active" onClick={(e)=>menuLinkAnimation(e)}>Raw Data</Link>
-          <Link to ="/ExhibitionLight" id='opt-2' className="menu-link" onClick={(e)=>menuLinkAnimation(e)}>ExhibitionLight</Link>
+          <Link to ="/Optical" id='opt-2' className="menu-link" onClick={(e)=>menuLinkAnimation(e)}>Optical</Link>
           {/* <Link to ="/yCalibrating" id='opt-3' className="menu-link" onClick={(e)=>menuLinkAnimation(e)}>YCalibrating</Link> */}
           {/* <Link to ="/All" id='opt-4' className="menu-link" onClick={(e)=>menuLinkAnimation(e)}>ALL</Link> */}
           <Link to ="/Admin" id='opt-5' className="menu-link" onClick={(e)=>menuLinkAnimation(e)}>Admin</Link>
@@ -183,7 +183,7 @@ function App() {
           <div className="content-wrapper">
             <Routes>
               <Route path='/' element={<RawData hamamatusRead ={hamamatusRead} modeBtn = {modeBtn}></RawData>}></Route>
-              <Route path='/ExhibitionLight' element={<ExhibitionLight hamamatusOptical ={hamamatusOptical}></ExhibitionLight>}></Route>
+              <Route path='/Optical' element={<Optical hamamatusOptical ={hamamatusOptical}></Optical>}></Route>
               {/* <Route path='/yCalibrating' element={<YCalibrating></YCalibrating>}></Route> */}
               {/* <Route path='/All' element={<All></All>}></Route> */}
               <Route path='/Admin' element={<Admin></Admin>}></Route>

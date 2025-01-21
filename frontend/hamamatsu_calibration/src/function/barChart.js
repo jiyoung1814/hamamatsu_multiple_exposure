@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useLayoutEffect} from 'react';
+import React,{useState, useEffect} from 'react';
 import { BarChart, XAxis, YAxis, Cell, Tooltip, Bar, ResponsiveContainer } from 'recharts';
 
 const barChart =(props) =>{
@@ -38,20 +38,21 @@ const barChart =(props) =>{
         setData(data_list)
     }
 
-    const TooltipItemStyle ={
-        color:'white',
-        fontSize: '14px',
-        // border: 'white 1px solid',
-        // background: 'transparent'
-        // borderRadius: '20%'
-        // background: 'black'
-    }
+    // const TooltipItemStyle ={
+    //     color:'white',
+    //     fontSize: '14px',
+    //     // border: 'white 1px solid',
+    //     // background: 'transparent'
+    //     // borderRadius: '20%'
+    //     // background: 'black'
+    // }
   
-    const contentStyle ={
-        background: 'transparent',
-        border: 'none',
-        color: 'black'
-    }  
+    // const contentStyle ={
+    //     background: 'transparent',
+    //     border: 'none',
+    //     color: 'black'
+    // }  
+    
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
           return (

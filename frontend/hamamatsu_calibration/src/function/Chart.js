@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 let name = [];
 const sensorPixel = 288;
@@ -7,7 +7,7 @@ const sensorPixel = 288;
 
 const Chart =(props)=>{
     const [data, setData] = useState([]);
-    const [domain, setDomain] = useState([0,1023]);
+    // const [domain, setDomain] = useState([0,1023]);
     
     useEffect(()=>{
       //그래프 초기화
@@ -15,14 +15,14 @@ const Chart =(props)=>{
 
     },[])
 
-    useEffect(()=>{
-      if(props.modeBtn == 'R'){
-        setDomain([0,5]);
-      }
-      else{
-        setDomain([0,1023]);
-      }
-    },[props.modeBtn])
+    // useEffect(()=>{
+    //   if(props.modeBtn === 'R'){
+    //     setDomain([0,5]);
+    //   }
+    //   else{
+    //     setDomain([0,1023]);
+    //   }
+    // },[props.modeBtn])
 
     useEffect(()=>{
       if(props.hamamatusRead.length !==0){

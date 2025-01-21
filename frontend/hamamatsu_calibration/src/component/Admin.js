@@ -1,7 +1,7 @@
 import React from 'react';
 
 import '../css/Admin.css'
-import { ChangeClassListActive } from '../function/btnEvent';
+// import { ChangeClassListActive } from '../function/btnEvent';
 import { post } from '../function/post';
 import { textFile } from '../function/textFile';
 import { SaveData } from '../function/btnEvent';

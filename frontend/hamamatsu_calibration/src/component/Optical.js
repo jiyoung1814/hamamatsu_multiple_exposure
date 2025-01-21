@@ -1,8 +1,8 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react';
-import '../css/ExhibitionLight.css'
+import React, {useEffect, useState} from 'react';
+import '../css/Optical.css'
 import CriChart from '../function/barChart'
 
-const ExhibitionLight =(props) =>{
+const Optical =(props) =>{
 
     const [cri, setCri] = useState([]); //[ra, r1, r2 ... r14]
     const [illum, setIllum] = useState(0);
@@ -13,7 +13,7 @@ const ExhibitionLight =(props) =>{
         
         let optical = props.hamamatusOptical;
         try{
-            if(optical.length != 0 ){
+            if(optical.length !== 0 ){
                 setCCT(Number(optical['cct']).toFixed(2))
                 setIllum(Number(optical['illum']).toFixed(2))
                 
@@ -80,4 +80,4 @@ const ExhibitionLight =(props) =>{
 }
 
 
-export default ExhibitionLight;
+export default Optical;
